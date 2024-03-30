@@ -1,0 +1,49 @@
+.outerDiv {
+    background-color: var(--light-brown);
+    min-height: 100vh;
+    color: var(--brown);
+  }
+  
+  .outerDiv h1 {
+    font-size: 2rem;
+    padding: 30px;
+    font-weight: bold;
+  }
+  .cardDiv {
+    margin: 0 30px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  @media screen and (max-width: 1024px) {
+    .cardDiv {
+      grid-template-columns: repeat(2, minmax(300px, 1fr));
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .cardDiv {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .cardDiv button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    border: 5px solid var(--brown);
+    background-color: var(--brown);
+    color: var(--light-brown);
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .cardDiv button:hover {
+    background-color: var(--brown);
+    color: var(--light-brown);
+    cursor: pointer;
+  }
+  

@@ -1,0 +1,27 @@
+.mainDiv{
+    border: 1px solid var(--brown);
+    border-radius: 10px;
+}
+.dishesDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px 0;
+    width: max-content;
+    justify-content: center;
+    width: 100%;
+}
+.dishDiv{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 5px;
+    flex-direction: column;
+    width: max-content;
+    border-bottom: 1px solid var(--brown);
+    margin: 5px;
+}
+.dishDiv:last-child{
+    border-bottom: none;
+}

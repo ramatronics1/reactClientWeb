@@ -1,0 +1,25 @@
+.outerDiv{
+    background-color: var(--light-brown);
+    min-height: 100vh;
+    color: var(--brown);
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    padding: 10px;
+}
+.innerDiv{
+    margin: 0 10px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    gap: 10px;
+}
+@media screen and (max-width: 1024px){
+    .innerDiv{
+        grid-template-columns: repeat(2, minmax(300px, 1fr));
+    }
+}
+@media screen and (max-width: 768px){
+    .innerDiv{
+        grid-template-columns: 1fr;
+    }
+}
