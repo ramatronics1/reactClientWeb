@@ -35,16 +35,28 @@ function App() {
         isPresent = true;
       }
     });
+  
     if (isPresent) {
       setWarn(true);
       setTimeout(() => {
         setWarn(false);
       }, 2000);
-    }else{
-      setDish([...dish, item]);
+    } else {
+      let isDifferentHotel = true;
+      dish.forEach((product) => {
+        if (item.Hotel_id === product.Hotel_id) {
+          isDifferentHotel = false;
+        }
+      });
+  
+      if (isDifferentHotel) {
+        setDish([item]);
+      } else {
+        setDish([...dish, item]);
+      }
     }
-
   };
+  
   
   const handleChange = (item, d) => {
     let ind = -1;
