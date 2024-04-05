@@ -3,8 +3,9 @@ import axios from 'axios';
 import ClusterMap from '../ClientDashBoard/ClusterMap';
 import AdminHotelCards from './AdminHotelCards';
 import styles from './AdminHoteldisplay.module.css';
+import AddtoCart from '../ClientDashBoard/addtoCart';
 
-const AdminHotelDisplay = () => {
+const AdminHotelDisplay = ({show,dish,setDish,handleChange,handleClick}) => {
   const [data, setData] = useState([]);
 
   const fetchHotels = async () => {
@@ -25,15 +26,24 @@ const AdminHotelDisplay = () => {
 
   return (
     <div className={styles.outerDiv}>
-      <ClusterMap />
-      <a href="/hotelRegister"><button style={{width: 'fit-content', padding: '3px 6px', margin: '10px'}}>Create Hotel &rarr;</button></a>
-      <h1>Admin Hotel Display</h1>
-      <div className={styles.cardDiv}>
-        {data.map((hotel, index) => (
-          <AdminHotelCards key={hotel._id} hotel={hotel} index={index} />
-        ))}
-      </div>
-    </div>
+    {show ? (
+      <AddtoCart  dish={dish} setDish={setDish} handleChange={handleChange}  handleClick={handleClick}/>
+    ) : (
+      <>
+        <ClusterMap />
+        <a href="/hotelRegister">
+          <button style={{ width: 'fit-content', padding: '3px 6px', margin: '10px' }}>Create Hotel &rarr;</button>
+        </a>
+        <h1>Admin Hotel Display</h1>
+        <div className={styles.cardDiv}>
+          {data.map((hotel, index) => (
+            <AdminHotelCards key={hotel._id} hotel={hotel} index={index} />
+          ))}
+        </div>
+      </>
+    )}
+  </div>
+  
   );
 };
 

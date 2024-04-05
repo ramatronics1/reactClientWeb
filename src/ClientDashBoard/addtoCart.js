@@ -44,13 +44,13 @@ const AddtoCart = ({ dish, setDish, handleChange }) => {
 
   return (
     <div className={styles.outerDiv}>
-      <h3>Cart</h3>
-      <div class={styles.cardDiv}>
-        {dish.map((item) => (
-          <div class={styles.card}>
-            <div key={`cart-${item._id}`} style={{ marginBottom: '20px' }}>
-              <h3>{item.name}</h3>
-              <table>
+    <h3>Cart</h3>
+    <div className={styles.cardDiv}>
+      {dish && dish.map((item) => (
+        <div className={styles.card} key={`cart-${item._id}`}>
+          <div style={{ marginBottom: '20px' }}>
+            <h3>{item.name}</h3>
+            <table>
               <tbody>
                 <tr>
                   <td><strong>Description:</strong></td>
@@ -74,37 +74,43 @@ const AddtoCart = ({ dish, setDish, handleChange }) => {
                 </tr>
               </tbody>
             </table>
-              {item.imageUrl.map((image, imageIndex) => (
-                <img
-                  key={`${item._id}-image-${imageIndex}`} // Use _id for key
-                  src={image.url}
-                  alt={`Description of image ${imageIndex + 1}`}
-                  style={{ width: '100px', height: 'auto', marginBottom: '8px' }}
-                />
-              ))}
-              <div className={styles.btnDiv}>
-                <button onClick={() => handleChange(item, -1)}> - </button>
-                <div>{item.quantity}</div>
-                <button onClick={() => handleChange(item, +1)}> + </button>
-              </div>
-              <label htmlFor={`specialInstructions-${item._id}`}><b>Special Instructions:</b></label>
-              <input
-                className={styles.specialInstructionsInput}
-                type="text"
-                name="specialInstructions"
-                id={`specialInstructions-${item._id}`}
-                placeholder="Enter special instructions"
-                onChange={(e) => handleSpecialInstructionsChange(item._id, e.target.value)}
-                value={specialInstructions[item._id] || ''}
+            {item.imageUrl.map((image, imageIndex) => (
+              <img
+                key={`${item._id}-image-${imageIndex}`} // Use _id for key
+                src={image.url}
+                alt={`Description of image ${imageIndex + 1}`}
+                style={{ width: '100px', height: 'auto', marginBottom: '8px' }}
               />
+            ))}
+            <div className={styles.btnDiv}>
+              <button onClick={() => handleChange(item, -1)}> - </button>
+              <div>{item.quantity}</div>
+              <button onClick={() => handleChange(item, +1)}> + </button>
             </div>
+            <label htmlFor={`specialInstructions-${item._id}`}><b>Special Instructions:</b></label>
+            <input
+              className={styles.specialInstructionsInput}
+              type="text"
+              name="specialInstructions"
+              id={`specialInstructions-${item._id}`}
+              placeholder="Enter special instructions"
+              onChange={(e) => handleSpecialInstructionsChange(item._id, e.target.value)}
+              value={specialInstructions[item._id] || ''}
+            />
           </div>
-        ))}
-      </div>
-      <p><strong>Total Amount:</strong> ${price}</p>
-      <button className={styles.confirmOrderBtn} onClick={() => handleSubmit(dish, price)}>Confirm order?</button>
+        </div>
+      ))}
     </div>
-  );
+    {dish && dish.length > 0 ? (
+      <div>
+        <p><strong>Total Amount:</strong> ${price}</p>
+        <button className={styles.confirmOrderBtn} onClick={() => handleSubmit(dish, price)}>Confirm order?</button>
+      </div>
+    ) : (
+      <p> Add dishes to cart to order</p>
+    )}
+  </div>
+  );  
 };
 
 export default AddtoCart;

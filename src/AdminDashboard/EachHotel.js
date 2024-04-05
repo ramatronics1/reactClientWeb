@@ -3,8 +3,9 @@ import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import DisplayDishes from "./DisplayDishes";
 import styles from './EachHotel.module.css'
+import AddtoCart from "../ClientDashBoard/addtoCart";
 
-const EachHotel = () => {
+const EachHotel = ({show,dish,setDish,handleChange,handleClick}) => {
   const [data, setData] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -38,27 +39,34 @@ const EachHotel = () => {
 
   return (
     <div>
-      <h1>Hotel Details</h1>
-      {data ? (
-        <div style={{display:'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '5px'}}>
-          <p>Hotel ID: <u>{data.imageUrl[0].url}</u></p>
-          
-          <div class={styles.displayDiv}>
-            {!isLoggedIn && (
-              <div>
-                <p>Already a Customer/Join Now!</p>{" "}
-                <Link className={styles.Login} to={{ pathname: `/adminSignup/${data._id}` }}>Sign Up</Link>{" "}
-                <Link className={styles.Signup} to={{ pathname: `/adminLogin/${data._id}` }}>Login</Link>
-              </div>
-            )}{" "}
-     
-          </div>
-        </div>
+      {show}
+      {show ? (
+        <AddtoCart dish={dish} setDish={setDish} handleChange={handleChange}  handleClick={handleClick}/>
       ) : (
-        <p>Loading...</p>
+        <div>
+          <h1>Hotel Details</h1>
+          {data ? (
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '5px' }}>
+              <p>Hotel ID: <u>{data.imageUrl[0].url}</u></p>
+  
+              <div className={styles.displayDiv}>
+                {!isLoggedIn && (
+                  <div>
+                    <p>Already a Customer/Join Now!</p>{" "}
+                    <Link className={styles.Login} to={{ pathname: `/adminSignup/${data._id}` }}>Sign Up</Link>{" "}
+                    <Link className={styles.Signup} to={{ pathname: `/adminLogin/${data._id}` }}>Login</Link>
+                  </div>
+                )}
+              </div>
+            </div>
+          ) : (
+            <p>Loading...</p>
+          )}
+        </div>
       )}
     </div>
   );
+  
 };
 
 export default EachHotel;
