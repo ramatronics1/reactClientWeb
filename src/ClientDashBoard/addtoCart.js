@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import {useNavigate} from 'react-router-dom';
 import styles from './AddtoCart.module.css';
 
 const AddtoCart = ({ dish, setDish, handleChange }) => {
   const [price, setPrice] = useState(0);
   const [specialInstructions, setSpecialInstructions] = useState({});
+
+  const navigate = useNavigate()
 
   const handlePrice = () => {
     let ans = 0;
@@ -27,16 +29,26 @@ const AddtoCart = ({ dish, setDish, handleChange }) => {
         specialInstructions: specialInstructions[item._id] || '',
       }));
       newAttributes.totalAmount = price;
-      console.log(newAttributes);
-    
-      const IP=process.env.IP
-      const response = await axios.post(`http://localhost:5000/createOrder`, { items: newAttributes, price: price },
-      { withCredentials: true });
-      console.log(response.data); 
+      newAttributes.Hotel_id = dish[0].Hotel_id;
+  
+      const hotelId = dish[0].Hotel_id;
+      const response = await axios.post(
+        `http://localhost:5000/createOrder`,
+        { items: newAttributes, price: price, hotelId: hotelId },
+        { withCredentials: true }
+      );
+  
+      if (response && response.data && response.data._id) {
+        navigate(`/orderSuccess/${response.data._id}`); // Corrected navigate syntax
+        setDish([]);
+      } else {
+        console.error('Error creating order:', response.data);
+      }
     } catch (error) {
       console.error('Error creating order:', error.message);
     }
   };
+  
 
   useEffect(() => {
     handlePrice();

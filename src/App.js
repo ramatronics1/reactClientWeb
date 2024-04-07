@@ -11,7 +11,7 @@ import DisplayDishes from './AdminDashboard/DisplayDishes';
 import PreviousOrders from './ClientDashBoard/PreviousOrders';
 import LoginPage from './ClientDashBoard/LoginPage';
 import Navbar from './ClientDashBoard/Navbar';
-
+import OrderSuccess from './ClientDashBoard/OrderSuccess';
 
 import AdminSignup from './AdminDashboard/AdminSignup';
 import HotelRegister from './AdminDashboard/HotelRegister';
@@ -95,7 +95,7 @@ function App() {
         <Route path="/HotelDisplay" element={<AdminHotelDisplay warn={warn}  dish={dish} setDish={setDish} handleChange={handleChange} show={show} />} />
         {/* Done */}
         <Route path="/Admin/HotelRegister" element={<HotelRegister />} />
-        
+        <Route path="/orderSuccess/:orderId" element={<OrderSuccess />} />
         {/* Done */}
         <Route path="/hotel/:hotelId" element={<AdminHome warn={warn}  dish={dish} setDish={setDish} handleChange={handleChange} show={show}/>} />
         {/* Done */}
