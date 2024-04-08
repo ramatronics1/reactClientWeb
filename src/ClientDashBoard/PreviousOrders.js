@@ -25,7 +25,9 @@ const PreviousOrders = ({ id }) => {
       <h2>Previous Orders</h2>
       <div className={styles.innerDiv}>
         {data.map((order) => (
-          <PrevCards order={order}/>
+          <PrevCards order={order}
+            id ={order._id}
+          />
         ))}
       </div>
     </div>
