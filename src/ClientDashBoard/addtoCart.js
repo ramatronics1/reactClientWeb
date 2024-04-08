@@ -3,10 +3,10 @@ import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import styles from './AddtoCart.module.css';
 
-const AddtoCart = ({ dish, setDish, handleChange }) => {
+const AddtoCart = ({ dish,id, setDish, handleChange }) => {
   const [price, setPrice] = useState(0);
   const [specialInstructions, setSpecialInstructions] = useState({});
-
+  const IP = process.env.REACT_APP_API_URL
   const navigate = useNavigate()
 
   const handlePrice = () => {
@@ -33,8 +33,8 @@ const AddtoCart = ({ dish, setDish, handleChange }) => {
   
       const hotelId = dish[0].Hotel_id;
       const response = await axios.post(
-        `http://localhost:5000/createOrder`,
-        { items: newAttributes, price: price, hotelId: hotelId },
+        `http://${IP}:5000/createOrder`,
+        { items: newAttributes, price: price, hotelId: hotelId, id:id },
         { withCredentials: true }
       );
   

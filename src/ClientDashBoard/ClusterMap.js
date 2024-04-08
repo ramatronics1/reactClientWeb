@@ -4,10 +4,10 @@ import axios from 'axios';
 
 const ClusterMap = () => {
   const [data, setData] = useState([]);
-
+  const IP = process.env.REACT_APP_API_URL
   const fetchHotels = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/hotelsDisplay');
+      const response = await axios.get(`http://${IP}:5000/hotelsDisplay`);
       if (response.data) {
         setData(response.data)
       }

@@ -5,11 +5,11 @@ import styles from './PreviousOrders.module.css';
 
 const PreviousOrders = ({ id }) => {
   const [data, setData] = useState([]);
-
+  const IP = process.env.REACT_APP_API_URL
   useEffect(() => {
     const fetchPrevOrders = async () => {
       try {
-        const response = await axios.post(`http://localhost:5000/prevOrders/${id}`);
+        const response = await axios.post(`http://${IP}:5000/prevOrders/${id}`);
         console.log(response.data)
         setData(response.data);
       } catch (error) {

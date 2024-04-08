@@ -7,7 +7,7 @@ import styles from './EachHotel.module.css';
 const EachHotel = () => {
   const [hotelData, setData] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const IP = process.env.REACT_APP_API_URL
   const { id } = useParams();
 
   const checkLocalStorage = () => {
@@ -21,7 +21,7 @@ const EachHotel = () => {
 
   const fetchHotel = async () => {
     try {
-      const response = await axios.post(`http://localhost:5000/hotel/${id}`);
+      const response = await axios.post(`http://${IP}:5000/hotel/${id}`);
       setData(response.data);
     } catch (error) {
       console.error("Error fetching hotel:", error);

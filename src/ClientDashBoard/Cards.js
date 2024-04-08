@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const Cards = ({ dish, handleClick }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const history = useNavigate();
+  const IP = process.env.REACT_APP_API_URL
  console.log(dish);
   const checkLocalStorage = () => {
     const isLoggedInString = localStorage.getItem('isLoggedIn');
@@ -26,7 +27,7 @@ const Cards = ({ dish, handleClick }) => {
 
   const handleDelete = async (dishId) => {
     try {
-      const response = await axios.delete(`http://localhost:5000/deleteDishes/${dishId}`);
+      const response = await axios.delete(`http://${IP}:5000/deleteDishes/${dishId}`);
       console.log(response.data);
       // Assuming setDishes is not required here as it's not being used
     } catch (error) {

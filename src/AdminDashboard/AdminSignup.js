@@ -9,6 +9,7 @@ const AdminSignup = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const id =useParams().hotelId;
+  const IP = process.env.REACT_APP_API_URL
   console.log(id)
 
   const handleChange = (e) => {
@@ -26,7 +27,7 @@ const AdminSignup = () => {
  
 
     try {
-      const response = await axios.post('http://localhost:5000/adminSignup', { email, password,id});
+      const response = await axios.post(`http://${IP}:5000/adminSignup`, { email, password,id});
 
       if (response.data) {
         navigate(`/hotel/${id}/`);

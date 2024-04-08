@@ -4,13 +4,13 @@ import axios from "axios";
 import styles from "./EachHotel.module.css";
 import AddtoCart from "../ClientDashBoard/addtoCart";
 
-const AdminHome = ({show,dish,setDish,handleChange,handleClick}) => {
+const AdminHome = ({show,id,dish,setDish,handleChange,handleClick}) => {
   const { hotelId } = useParams();
 
   return (
     <div>
     {show ? (
-      <AddtoCart dish={dish} setDish={setDish} handleChange={handleChange} handleClick={handleClick} />
+      <AddtoCart id={id} dish={dish} setDish={setDish} handleChange={handleChange} handleClick={handleClick} />
     ) : (
       <>
         <h1 style={{ margin: '2rem' }}>Welcome to the Home Page</h1>

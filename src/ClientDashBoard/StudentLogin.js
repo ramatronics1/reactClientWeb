@@ -7,6 +7,7 @@ import styles from "./StudentLogin.module.css";
 import logo from "../assets/images/logo.jpg";
 
 const StudentLogin = ({ login, setLogin, setId }) => {
+  const IP = process.env.REACT_APP_API_URL
   const [usn, setUsn] = useState("");
   const [dob, setDob] = useState("");
   const history = useNavigate();
@@ -25,7 +26,7 @@ const StudentLogin = ({ login, setLogin, setId }) => {
 
     try {
       const response = await axios.post(
-        `http://localhost:5000/clientLogin`,
+        `http://${IP}:5000/clientLogin`,
         { usn, dob },
         {
           withCredentials: true,

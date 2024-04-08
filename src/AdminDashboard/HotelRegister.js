@@ -3,6 +3,7 @@ import axios from 'axios';
 import styles from './UploadScreen.module.css';
 
 const HotelRegister = () => {
+  const IP = process.env.REACT_APP_API_URL
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -46,7 +47,7 @@ const HotelRegister = () => {
       formDataToSend.append('longitude', formData.geometry.coordinates[0]);
       formDataToSend.append('image', formData.image);
 
-      await axios.post('http://localhost:5000/hotelRegister', formDataToSend, {
+      await axios.post(`http://${IP}:5000/hotelRegister`, formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

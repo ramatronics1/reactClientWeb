@@ -13,7 +13,7 @@ const UploadScreen = () => {
   const [image, setImage] = useState(null);
   const { hotelId } = useParams();
   const navigate = useNavigate();
-
+  const IP = process.env.REACT_APP_API_URL
   const handleUpload = async () => {
     try {
       if (!name || !description || !price || !category || !ingredients || !image) {
@@ -30,7 +30,7 @@ const UploadScreen = () => {
       formData.append('isVegetarian', isVegetarian.toString());
       formData.append('image', image);
   
-      const response = await axios.post(`http://localhost:5000/addNewdish/${hotelId}`, formData, {
+      const response = await axios.post(`http://${IP}:5000/addNewdish/${hotelId}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 const EditDishScreen = () => {
   const location = useLocation();
   const loc = location.state.id;
- 
+  const IP = process.env.REACT_APP_API_URL
  
   const [name, setName] = useState(loc.name);
   const [description, setDescription] = useState(loc.description);
@@ -36,7 +36,7 @@ const EditDishScreen = () => {
       });
      
       
-      const response = await axios.put(`http://192.168.1.43:5000/updateDishes/${loc._id}`, formData);
+      const response = await axios.put(`http://${IP}:5000/updateDishes/${loc._id}`, formData);
   
 
 

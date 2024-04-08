@@ -5,12 +5,12 @@ import AdminHotelCards from './AdminHotelCards';
 import styles from './AdminHoteldisplay.module.css';
 import AddtoCart from '../ClientDashBoard/addtoCart';
 
-const AdminHotelDisplay = ({show,dish,setDish,handleChange,handleClick}) => {
+const AdminHotelDisplay = ({show,id,dish,setDish,handleChange,handleClick}) => {
   const [data, setData] = useState([]);
-
+  const IP = process.env.REACT_APP_API_URL
   const fetchHotels = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/hotelsDisplay');
+      const response = await axios.get(`http://${IP}:5000/hotelsDisplay`);
       if (response.data) {
         setData(response.data);
         console.log(response.data);
@@ -27,7 +27,7 @@ const AdminHotelDisplay = ({show,dish,setDish,handleChange,handleClick}) => {
   return (
     <div className={styles.outerDiv}>
     {show ? (
-      <AddtoCart  dish={dish} setDish={setDish} handleChange={handleChange}  handleClick={handleClick}/>
+      <AddtoCart  id={id} dish={dish} setDish={setDish} handleChange={handleChange}  handleClick={handleClick}/>
     ) : (
       <>
         <ClusterMap />

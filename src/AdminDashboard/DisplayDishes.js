@@ -4,11 +4,12 @@ import { useNavigate,useParams } from 'react-router-dom';
 import styles from './DisplayDishes.module.css';
 import AddtoCart from '../ClientDashBoard/addtoCart';
 
-const DisplayDishes = ({show,dish,setDish,handleChange,handleClick,setIsLoggedIn,isLoggedIn,warn }) => {
+const DisplayDishes = ({show,id,dish,setDish,handleChange,handleClick,setIsLoggedIn,isLoggedIn,warn }) => {
  
   const [dishes, setDishes] = useState([]);
   const history=useNavigate();
   const {hotelId}=useParams();
+  const IP = process.env.REACT_APP_API_URL
   console.log(hotelId)
 
   const cardStyle = {
@@ -57,7 +58,7 @@ const DisplayDishes = ({show,dish,setDish,handleChange,handleClick,setIsLoggedIn
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/displayDishes/${hotelId}`);
+        const response = await axios.get(`http://${IP}:5000/displayDishes/${hotelId}`);
         setDishes(response.data);
         console.log(response.data);
       } catch (error) {
@@ -105,7 +106,7 @@ const DisplayDishes = ({show,dish,setDish,handleChange,handleClick,setIsLoggedIn
     warn&&<div style={{'height':'50px', 'background': 'var(--light-brown)'}}> <h3 style={{'color': 'red'}}>Item already present in cart</h3></div>
 }
       {show ? (
-        <AddtoCart dish={dish} setDish={setDish} handleChange={handleChange}  handleClick={handleClick} />
+        <AddtoCart id={id} dish={dish} setDish={setDish} handleChange={handleChange}  handleClick={handleClick} />
       ) : (
         <div className={styles.outerDiv}>
           <h1>Display Dishes</h1>

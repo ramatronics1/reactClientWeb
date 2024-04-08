@@ -74,7 +74,7 @@ function App() {
     setDish([...tempArr]);
   };
   console.log(process.env.REACT_APP_API_URL)
-  
+
   return (
     <div className="App">
    
@@ -90,15 +90,15 @@ function App() {
         {/* Done */}
         <Route path="/adminLogin" element={<AdminLogin />} />
         {/* Done */}
-        <Route path="/Admin/hotel/:id" element={<EachHotel warn={warn}  dish={dish} setDish={setDish} handleChange={handleChange} show={show} />} />
+        <Route path="/Admin/hotel/:id" element={<EachHotel warn={warn} id={id}  dish={dish} setDish={setDish} handleChange={handleChange} show={show} />} />
         
         {/* Done */}
-        <Route path="/HotelDisplay" element={<AdminHotelDisplay warn={warn}  dish={dish} setDish={setDish} handleChange={handleChange} show={show} />} />
+        <Route path="/HotelDisplay" element={<AdminHotelDisplay warn={warn} id={id} dish={dish} setDish={setDish} handleChange={handleChange} show={show} />} />
         {/* Done */}
         <Route path="/Admin/HotelRegister" element={<HotelRegister />} />
         <Route path="/orderSuccess/:orderId" element={<OrderSuccess />} />
         {/* Done */}
-        <Route path="/hotel/:hotelId" element={<AdminHome warn={warn}  dish={dish} setDish={setDish} handleChange={handleChange} show={show}/>} />
+        <Route path="/hotel/:hotelId" element={<AdminHome warn={warn}  dish={dish} id={id} setDish={setDish} handleChange={handleChange} show={show}/>} />
         {/* Done */}
         <Route path="/hotel/:hotelId/UploadScreen" element={<UploadScreen/>} />
         {/* Not accessible */}
@@ -106,7 +106,7 @@ function App() {
         {/* Done */}
         <Route path="/hotelRegister" element={<HotelRegister/>}/>
         {/* Not accessible */}
-        <Route path="/DisplayDishes/:hotelId" element={<DisplayDishes setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} dish={dish} warn={warn} setDish={setDish} handleChange={handleChange} show={show} handleClick={handleClick}/>} />
+        <Route path="/DisplayDishes/:hotelId" element={<DisplayDishes setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} dish={dish} id={id} warn={warn} setDish={setDish} handleChange={handleChange} show={show} handleClick={handleClick}/>} />
         {/* Done */}
         <Route path="/adminSignup/:hotelId" element={<AdminSignup />} />
         {/* Done */}

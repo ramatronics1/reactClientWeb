@@ -7,10 +7,10 @@ import styles from './Home.module.css';
 
 const Home = ({ handleClick,name,hotelId }) => {
   const [data, setData] = useState([]);
-
+  const IP = process.env.REACT_APP_API_URL
   const fetchDishes = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/displayDishes/${hotelId}`);
+      const response = await axios.get(`http://${IP}:5000/displayDishes/${hotelId}`);
       if (response.data) {
 
         setData(response.data);
