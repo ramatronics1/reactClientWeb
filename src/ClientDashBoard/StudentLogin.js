@@ -10,7 +10,6 @@ const StudentLogin = ({ login, setLogin, setId }) => {
   const [usn, setUsn] = useState("");
   const [dob, setDob] = useState("");
   const history = useNavigate();
-
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -31,6 +30,7 @@ const StudentLogin = ({ login, setLogin, setId }) => {
         {
           withCredentials: true,
         }
+    
       );
 
       if (response.data) {
